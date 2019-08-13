@@ -1,116 +1,307 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
-  
 
-  
-  <title>Perfect Hair Programming | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言写这篇博客的原因主要是记录下自己在学习PHP过程中遇到的一些问题。一方面也可以让自己坚持下来，为MySQL和AmazeUI的学习做好准备。 7月29日多维数组的问题&amp;lt;?php $List = array (     array(12,100,96),     array(3,60,59),     array(23,110,100) ); $i=1; echo &amp;quot;$List[$">
+
+
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="前言写这篇博客的原因主要是记录下自己在学习PHP过程中遇到的一些问题。一方面也可以让自己坚持下来，为MySQL和AmazeUI的学习做好准备。 7月29日多维数组的问题12345678910   &amp;lt;?php$List = array(    array(12,100,96),    array(3,60,59),    array(23,110,100));$i=1;echo &quot;$List[">
 <meta name="keywords" content="PHP,MySQL,DateBase">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Perfect Hair Programming">
 <meta property="og:url" content="http://47.106.74.249/2018/07/29/Perfect-Hair-Programming/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="前言写这篇博客的原因主要是记录下自己在学习PHP过程中遇到的一些问题。一方面也可以让自己坚持下来，为MySQL和AmazeUI的学习做好准备。 7月29日多维数组的问题&amp;lt;?php $List = array (     array(12,100,96),     array(3,60,59),     array(23,110,100) ); $i=1; echo &amp;quot;$List[$">
+<meta property="og:description" content="前言写这篇博客的原因主要是记录下自己在学习PHP过程中遇到的一些问题。一方面也可以让自己坚持下来，为MySQL和AmazeUI的学习做好准备。 7月29日多维数组的问题12345678910   &amp;lt;?php$List = array(    array(12,100,96),    array(3,60,59),    array(23,110,100));$i=1;echo &quot;$List[">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://47.106.74.249/pic/2018073101.png">
 <meta property="og:image" content="http://47.106.74.249/pic/2018080301.png">
-<meta property="og:updated_time" content="2018-08-23T10:14:57.857Z">
+<meta property="og:updated_time" content="2019-08-13T14:53:27.654Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Perfect Hair Programming">
-<meta name="twitter:description" content="前言写这篇博客的原因主要是记录下自己在学习PHP过程中遇到的一些问题。一方面也可以让自己坚持下来，为MySQL和AmazeUI的学习做好准备。 7月29日多维数组的问题&amp;lt;?php $List = array (     array(12,100,96),     array(3,60,59),     array(23,110,100) ); $i=1; echo &amp;quot;$List[$">
+<meta name="twitter:description" content="前言写这篇博客的原因主要是记录下自己在学习PHP过程中遇到的一些问题。一方面也可以让自己坚持下来，为MySQL和AmazeUI的学习做好准备。 7月29日多维数组的问题12345678910   &amp;lt;?php$List = array(    array(12,100,96),    array(3,60,59),    array(23,110,100));$i=1;echo &quot;$List[">
 <meta name="twitter:image" content="http://47.106.74.249/pic/2018073101.png">
+  <link rel="canonical" href="http://47.106.74.249/2018/07/29/Perfect-Hair-Programming/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Perfect Hair Programming | Hexo</title>
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+<script src="/live2d-widget/autoload.js"></script>
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+      
+      
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://47.106.74.249"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-Perfect-Hair-Programming" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/29/Perfect-Hair-Programming/" class="article-date">
-  <time datetime="2018-07-29T07:12:16.000Z" itemprop="datePublished">2018-07-29</time>
-</a>
+        <li class="menu-item menu-item-home">
+      
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/DateBase/">DateBase</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Perfect Hair Programming
-    </h1>
-  
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
 
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://47.106.74.249/2018/07/29/Perfect-Hair-Programming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="NanFengX">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">Perfect Hair Programming
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-07-29 15:12:16" itemprop="dateCreated datePublished" datetime="2018-07-29T15:12:16+08:00">2018-07-29</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-13 22:53:27" itemprop="dateModified" datetime="2019-08-13T22:53:27+08:00">2019-08-13</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/DateBase/" itemprop="url" rel="index"><span itemprop="name">DateBase</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
       </header>
+
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>写这篇博客的原因主要是记录下自己在学习PHP过程中遇到的一些问题。一方面也可以让自己坚持下来，为MySQL和AmazeUI的学习做好准备。</p>
-<h1 id="7月29日"><a href="#7月29日" class="headerlink" title="7月29日"></a>7月29日</h1><h4 id="多维数组的问题"><a href="#多维数组的问题" class="headerlink" title="多维数组的问题"></a>多维数组的问题</h4><pre><code>&lt;?php
-$List = array
-(
-    array(12,100,96),
-    array(3,60,59),
-    array(23,110,100)
-);
-$i=1;
-echo &quot;$List[$i][1]&quot;;
-?&gt;</code></pre><p>运行时会显示 <code>Array to string conversion ……</code> 这样的问题。而一维数组没有发生问题。</p>
+<h1 id="7月29日"><a href="#7月29日" class="headerlink" title="7月29日"></a>7月29日</h1><h4 id="多维数组的问题"><a href="#多维数组的问题" class="headerlink" title="多维数组的问题"></a>多维数组的问题</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   <span class="meta">&lt;?php</span></span><br><span class="line">$List = <span class="keyword">array</span></span><br><span class="line">(</span><br><span class="line">    <span class="keyword">array</span>(<span class="number">12</span>,<span class="number">100</span>,<span class="number">96</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="number">3</span>,<span class="number">60</span>,<span class="number">59</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="number">23</span>,<span class="number">110</span>,<span class="number">100</span>)</span><br><span class="line">);</span><br><span class="line">$i=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"$List[$i][1]"</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行时会显示 <code>Array to string conversion ……</code> 这样的问题。而一维数组没有发生问题。</p>
 <p>多维数组，下标不是简单的数值的数组需要用<code>{}</code>起来。或者用temp，或者不使用引号都可以。</p>
-<pre><code>//修改后
-echo &quot;{$List[$i][1]}&quot;;
-echo $List[$i][1];
-$tmp=$List[$i][1];
-echo &quot;$tmp&quot;;</code></pre><h1 id="7月30日"><a href="#7月30日" class="headerlink" title="7月30日"></a>7月30日</h1><h4 id="Apache-PHP-MySQL-phpMyAdmin"><a href="#Apache-PHP-MySQL-phpMyAdmin" class="headerlink" title="Apache+PHP+MySQL+phpMyAdmin"></a>Apache+PHP+MySQL+phpMyAdmin</h4><p>超级多坑点，安装过程简直要爆炸。弄了一天也没有完全弄好，感觉要崩溃了。还是明天来弄吧。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//修改后</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&#123;$List[$i][1]&#125;"</span>;</span><br><span class="line"><span class="keyword">echo</span> $List[$i][<span class="number">1</span>];</span><br><span class="line">$tmp=$List[$i][<span class="number">1</span>];</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"$tmp"</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="7月30日"><a href="#7月30日" class="headerlink" title="7月30日"></a>7月30日</h1><h4 id="Apache-PHP-MySQL-phpMyAdmin"><a href="#Apache-PHP-MySQL-phpMyAdmin" class="headerlink" title="Apache+PHP+MySQL+phpMyAdmin"></a>Apache+PHP+MySQL+phpMyAdmin</h4><p>超级多坑点，安装过程简直要爆炸。弄了一天也没有完全弄好，感觉要崩溃了。还是明天来弄吧。</p>
 <h4 id="E-R图"><a href="#E-R图" class="headerlink" title="E-R图"></a>E-R图</h4><p>简单的了解了一下，可以看懂一些简单的E-R图了。</p>
 <h1 id="7月31日"><a href="#7月31日" class="headerlink" title="7月31日"></a>7月31日</h1><h4 id="phpMyAdmin"><a href="#phpMyAdmin" class="headerlink" title="phpMyAdmin"></a>phpMyAdmin</h4><p>终于安装好了，原来是<code>mysql.exe</code>的权限问题，调整了权限之后可以正常使用了。</p>
 <p><img src="/pic/2018073101.png" alt></p>
@@ -124,147 +315,311 @@ echo &quot;$tmp&quot;;</code></pre><h1 id="7月30日"><a href="#7月30日" class
 <h1 id="8月17日"><a href="#8月17日" class="headerlink" title="8月17日"></a>8月17日</h1><p>情人节。比赛终于结束了，期盼着两天之后有好的结果吧</p>
 <h1 id="8月19日"><a href="#8月19日" class="headerlink" title="8月19日"></a>8月19日</h1><p>二等奖，感觉还行23333</p>
 
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://47.106.74.249/2018/07/29/Perfect-Hair-Programming/" data-id="cjz9sfvtr00011goyejf5bl11" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DateBase/">DateBase</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
 
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/PHP/" rel="tag"># PHP</a>
+            
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+            
+              <a href="/tags/DateBase/" rel="tag"># DateBase</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2018/07/07/Max-Function-C/" rel="next" title="Max Function(C)">
+                  <i class="fa fa-chevron-left"></i> Max Function(C)
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/01/28/Teensy2-0Test/" rel="prev" title="Teensy2.0Test">
+                  Teensy2.0Test <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">NanFengX</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/NanFengx" title="GitHub &rarr; https://github.com/NanFengx" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:nanfengx18@gmail.com" title="E-Mail &rarr; mailto:nanfengx18@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://www.facebook.com/profile.php?id=100034012021773" title="FB Page &rarr; https://www.facebook.com/profile.php?id=100034012021773" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+    
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7月29日"><span class="nav-number">2.</span> <span class="nav-text">7月29日</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多维数组的问题"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">多维数组的问题</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7月30日"><span class="nav-number">3.</span> <span class="nav-text">7月30日</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache-PHP-MySQL-phpMyAdmin"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">Apache+PHP+MySQL+phpMyAdmin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#E-R图"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">E-R图</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7月31日"><span class="nav-number">4.</span> <span class="nav-text">7月31日</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#phpMyAdmin"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">phpMyAdmin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MySQL"><span class="nav-number">4.0.0.2.</span> <span class="nav-text">MySQL</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8月1日"><span class="nav-number">5.</span> <span class="nav-text">8月1日</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MySQL-1"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">MySQL</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8月2日"><span class="nav-number">6.</span> <span class="nav-text">8月2日</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MySQL-2"><span class="nav-number">6.0.0.1.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MySQL-PHP"><span class="nav-number">6.0.0.2.</span> <span class="nav-text">MySQL+PHP</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8月3日"><span class="nav-number">7.</span> <span class="nav-text">8月3日</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#phpMyAdmin-1"><span class="nav-number">7.0.0.1.</span> <span class="nav-text">phpMyAdmin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PHP-MySQL"><span class="nav-number">7.0.0.2.</span> <span class="nav-text">PHP+MySQL</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8月17日"><span class="nav-number">8.</span> <span class="nav-text">8月17日</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8月19日"><span class="nav-number">9.</span> <span class="nav-text">8月19日</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NanFengX</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
     </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/01/28/Teensy2-0Test/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Teensy2.0Test
-        
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
       </div>
-    </a>
-  
-  
-    <a href="/2018/07/07/Max-Function-C/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Max Function(C)</div>
-    </a>
-  
-</nav>
 
-  
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DateBase/">DateBase</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Embedded/">Embedded</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Others/">Others</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sever/">Sever</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DateBase/">DateBase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Embedded/">Embedded</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Others/">Others</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/">Server</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/DateBase/" style="font-size: 10px;">DateBase</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Others/" style="font-size: 10px;">Others</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Server/" style="font-size: 10px;">Server</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/08/11/hello-Hexo/">hello Hexo</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/28/Teensy2-0Test/">Teensy2.0Test</a>
-          </li>
-        
-          <li>
-            <a href="/2018/07/29/Perfect-Hair-Programming/">Perfect Hair Programming</a>
-          </li>
-        
-          <li>
-            <a href="/2018/07/07/Max-Function-C/">Max Function(C)</a>
-          </li>
-        
-          <li>
-            <a href="/2018/06/23/Sever-multi-user-confliguration/">Sever multi-user confliguration</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
-
   </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
 </body>
 </html>
