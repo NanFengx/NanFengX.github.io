@@ -5,15 +5,22 @@
   
 
   
-  <title>Archives: 2019 | Hexo</title>
+  <title>Sever multi-user confliguration | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://47.106.74.249/archives/2019/index.html">
+  <meta name="description" content="服务器多用户配置今天，为了让一个朋友科学上网，我修改了服务器配置，添加了多个端口，实现了让不同用户用同一个服务器上网的功能，本文使用的服务器为 CentOS 7 x64。 实现打开PuTTY，填入IP，打开服务器，使用Xshell同理。  填写账号密码，登陆，输入命令，创建配置文件。 vi /etc/shadowsocks.json按i键，将内容修改为 {  &amp;quot;server&amp;quot;:">
+<meta name="keywords" content="Server">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sever multi-user confliguration">
+<meta property="og:url" content="http://47.106.74.249/2018/06/23/Sever-multi-user-confliguration/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="服务器多用户配置今天，为了让一个朋友科学上网，我修改了服务器配置，添加了多个端口，实现了让不同用户用同一个服务器上网的功能，本文使用的服务器为 CentOS 7 x64。 实现打开PuTTY，填入IP，打开服务器，使用Xshell同理。  填写账号密码，登陆，输入命令，创建配置文件。 vi /etc/shadowsocks.json按i键，将内容修改为 {  &amp;quot;server&amp;quot;:">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http://47.106.74.249/pic/2018062301.png">
+<meta property="og:updated_time" content="2018-09-17T02:51:04.994Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Sever multi-user confliguration">
+<meta name="twitter:description" content="服务器多用户配置今天，为了让一个朋友科学上网，我修改了服务器配置，添加了多个端口，实现了让不同用户用同一个服务器上网的功能，本文使用的服务器为 CentOS 7 x64。 实现打开PuTTY，填入IP，打开服务器，使用Xshell同理。  填写账号密码，登陆，输入命令，创建配置文件。 vi /etc/shadowsocks.json按i键，将内容修改为 {  &amp;quot;server&amp;quot;:">
+<meta name="twitter:image" content="http://47.106.74.249/pic/2018062301.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,59 +67,91 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/08/11/hello-Hexo/" class="archive-article-date">
-  <time datetime="2019-08-11T13:34:21.000Z" itemprop="datePublished">Aug 11</time>
+        <section id="main"><article id="post-Sever-multi-user-confliguration" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/23/Sever-multi-user-confliguration/" class="article-date">
+  <time datetime="2018-06-23T15:19:22.000Z" itemprop="datePublished">2018-06-23</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Sever/">Sever</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/11/hello-Hexo/">hello Hexo</a>
+    <h1 class="article-title" itemprop="name">
+      Sever multi-user confliguration
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/01/28/Teensy2-0Test/" class="archive-article-date">
-  <time datetime="2019-01-28T15:23:15.000Z" itemprop="datePublished">Jan 28</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/28/Teensy2-0Test/">Teensy2.0Test</a>
-    </h1>
-  
+        <h2 id="服务器多用户配置"><a href="#服务器多用户配置" class="headerlink" title="服务器多用户配置"></a>服务器多用户配置</h2><p>今天，为了让一个朋友科学上网，我修改了服务器配置，添加了多个端口，实现了让不同用户用同一个服务器上网的功能，本文使用的服务器为 CentOS 7 x64。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>打开PuTTY，填入IP，打开服务器，使用Xshell同理。</p>
+<p><img src="/pic/2018062301.png" alt></p>
+<p>填写账号密码，登陆，输入命令，创建配置文件。</p>
+<pre><code>vi /etc/shadowsocks.json</code></pre><p>按i键，将内容修改为</p>
+<pre><code>{
+ &quot;server&quot;:&quot;0.0.0.0&quot;, 
+&quot;local_address&quot;: &quot;127.0.0.1&quot;,
+&quot;local_port&quot;:1080,
+&quot;port_password&quot;: {
+      &quot;8001&quot;: &quot;foobar1&quot;,    #端口号，密码
+      &quot;8002&quot;: &quot;foobar2&quot;
+},
+ &quot;timeout&quot;:300,
+&quot;method&quot;:&quot;aes-256-cfb&quot;,
+ &quot;fast_open&quot;: false
+}</code></pre><p>按ESC退出，输入:wq保存文件。</p>
+<p>有的服务器有防火墙</p>
+<pre><code>firewall-cmd --    zone=public --add-port=8001/tcp --permanent</code></pre><p>这里8001是你的端口号，根据你设置的端口进行修改。</p>
+<p>如果你想查看已经开启的端口，输入：</p>
+<pre><code>firewall-cmd --list-ports</code></pre><p>查看已开启的端口。</p>
+<p>重启防火墙：</p>
+<pre><code>firewall-cmd --reload</code></pre><p>查看端口号是否开启，运行命令：</p>
+<pre><code>firewall-cmd --query-port=8001/tcp</code></pre><p>大功告成。</p>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>我使用<a href="https://www.vultr.com/" target="_blank" rel="noopener">vultr</a>的服务器进行科学上网，每月有500G流量，正常情况基本用不完。开启多端口后，让你的同学朋友们下载Shadowsocks，配置一下，就让他们能够享受科学上网了。</p>
 
-    </header>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://47.106.74.249/2018/06/23/Sever-multi-user-confliguration/" data-id="cjz9oc5cj0001asoy2jlk7tpd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/">Server</a></li></ul>
+
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/07/07/Max-Function-C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Max Function(C)
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2018/06/17/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World!</div>
+    </a>
   
+</nav>
 
+  
+</article>
 
 </section>
         

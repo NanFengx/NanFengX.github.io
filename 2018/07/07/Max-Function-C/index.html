@@ -5,15 +5,20 @@
   
 
   
-  <title>Archives: 2019 | Hexo</title>
+  <title>Max Function(C) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://47.106.74.249/archives/2019/index.html">
+  <meta name="description" content="C语言使用宏定义取最大值使用宏定义取两个值中最大值是一个很简单的题目，随手写下： #define MAX(x,y) ((x)&amp;gt;(y)?(x):(y))这样写可以应付大多数的情况了，但在某些情况下还是会出现问题，比如说： #include&amp;lt;stdio.h&amp;gt; #define MAX(x,y) ((x)&amp;gt;(y)?(x):(y)) int main(){     int i=4;">
+<meta name="keywords" content="C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Max Function(C)">
+<meta property="og:url" content="http://47.106.74.249/2018/07/07/Max-Function-C/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="C语言使用宏定义取最大值使用宏定义取两个值中最大值是一个很简单的题目，随手写下： #define MAX(x,y) ((x)&amp;gt;(y)?(x):(y))这样写可以应付大多数的情况了，但在某些情况下还是会出现问题，比如说： #include&amp;lt;stdio.h&amp;gt; #define MAX(x,y) ((x)&amp;gt;(y)?(x):(y)) int main(){     int i=4;">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-07-29T14:41:23.735Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Max Function(C)">
+<meta name="twitter:description" content="C语言使用宏定义取最大值使用宏定义取两个值中最大值是一个很简单的题目，随手写下： #define MAX(x,y) ((x)&amp;gt;(y)?(x):(y))这样写可以应付大多数的情况了，但在某些情况下还是会出现问题，比如说： #include&amp;lt;stdio.h&amp;gt; #define MAX(x,y) ((x)&amp;gt;(y)?(x):(y)) int main(){     int i=4;">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,59 +65,94 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/08/11/hello-Hexo/" class="archive-article-date">
-  <time datetime="2019-08-11T13:34:21.000Z" itemprop="datePublished">Aug 11</time>
+        <section id="main"><article id="post-Max-Function-C" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/07/Max-Function-C/" class="article-date">
+  <time datetime="2018-07-07T09:34:45.000Z" itemprop="datePublished">2018-07-07</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Programming/">Programming</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/11/hello-Hexo/">hello Hexo</a>
+    <h1 class="article-title" itemprop="name">
+      Max Function(C)
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/01/28/Teensy2-0Test/" class="archive-article-date">
-  <time datetime="2019-01-28T15:23:15.000Z" itemprop="datePublished">Jan 28</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/28/Teensy2-0Test/">Teensy2.0Test</a>
-    </h1>
-  
+        <h1 id="C语言使用宏定义取最大值"><a href="#C语言使用宏定义取最大值" class="headerlink" title="C语言使用宏定义取最大值"></a>C语言使用宏定义取最大值</h1><p>使用宏定义取两个值中最大值是一个很简单的题目，随手写下：</p>
+<pre><code>#define MAX(x,y) ((x)&gt;(y)?(x):(y))</code></pre><p>这样写可以应付大多数的情况了，但在某些情况下还是会出现问题，比如说：</p>
+<pre><code>#include&lt;stdio.h&gt;
+#define MAX(x,y) ((x)&gt;(y)?(x):(y))
+int main(){
+    int i=4;
+    int j=5;
+    printf(&quot;max=%d，i=%d,j=%d&quot;,MAX(i++,j++),i,j);
+}</code></pre><p>输出的结果是：</p>
+<pre><code>max=6,i=5,j=7</code></pre><p>这和我们想象的不太一样，j的值应该是6。我们把<code>MAX(i++,j++)</code>带入看下</p>
+<pre><code>printf(&quot;max=%d，i=%d,j=%d&quot;,((i++)&gt;(j++)?(i++):(j++)),i,j);</code></pre><p>我们可以看到，<code>j++</code>这条命令被执行了两次，导致j的值为7，为了解决这个问题，我们修改下MAX。</p>
+<pre><code>#define MAX(x,y) ({\
+typeof(x) _x=x;\
+typeof(y) _y=y;\
+_x&gt;_y?_x:_y;\
+})</code></pre><p>用<code>typeof</code>获取x,y的数据类型，用_x和_y暂时保存x,y的值。避免了上面出现的问题。又或者是：</p>
+<pre><code>#define MAX(x,y) ({\
+typeof(x) _x=x;\
+typeof(y) _y=y;\
+(void)(&amp;_x==&amp;_y);\
+_x&gt;_y?_x:_y;\
+})</code></pre><p>抛出Warning解决类型不同的问题（不是很理解这句话<code>(void)(&amp;_x==&amp;_y);</code>）。</p>
+<p>比较相同类型的值时，也可以这样写（虽然我感觉没有上面的好用）：</p>
+<pre><code>#define MAX(type,x,y) ({\
+type _x=x;\
+type _y=y;\
+_x&gt;_y?_x:_y;\
+})</code></pre><p>大概就是这样，关于宏定义取最大值的问题，欢迎与我讨论</p>
 
-    </header>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://47.106.74.249/2018/07/07/Max-Function-C/" data-id="cjz9oc5cr0004asoyrnzxwc2r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li></ul>
+
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/07/29/Perfect-Hair-Programming/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Perfect Hair Programming
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2018/06/23/Sever-multi-user-confliguration/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Sever multi-user confliguration</div>
+    </a>
   
+</nav>
 
+  
+</article>
 
 </section>
         

