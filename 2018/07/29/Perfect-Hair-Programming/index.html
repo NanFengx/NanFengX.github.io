@@ -65,7 +65,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://nanfengx.top/pic/2018073101.png">
 <meta property="og:image" content="https://nanfengx.top/pic/2018080301.png">
-<meta property="og:updated_time" content="2019-08-13T14:53:27.654Z">
+<meta property="og:updated_time" content="2019-11-08T05:37:59.449Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Perfect Hair Programming">
 <meta name="twitter:description" content="前言写这篇博客的原因主要是记录下自己在学习PHP过程中遇到的一些问题。一方面也可以让自己坚持下来，为MySQL和AmazeUI的学习做好准备。 7月29日多维数组的问题12345678910   &amp;lt;?php$List = array(    array(12,100,96),    array(3,60,59),    array(23,110,100));$i=1;echo &quot;$List[">
@@ -263,7 +263,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-13 22:53:27" itemprop="dateModified" datetime="2019-08-13T22:53:27+08:00">2019-08-13</time>
+                <time title="Modified: 2019-11-08 13:37:59" itemprop="dateModified" datetime="2019-11-08T13:37:59+08:00">2019-11-08</time>
               </span>
             
           
@@ -296,6 +296,8 @@
 <h1 id="7月29日"><a href="#7月29日" class="headerlink" title="7月29日"></a>7月29日</h1><h4 id="多维数组的问题"><a href="#多维数组的问题" class="headerlink" title="多维数组的问题"></a>多维数组的问题</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   <span class="meta">&lt;?php</span></span><br><span class="line">$List = <span class="keyword">array</span></span><br><span class="line">(</span><br><span class="line">    <span class="keyword">array</span>(<span class="number">12</span>,<span class="number">100</span>,<span class="number">96</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="number">3</span>,<span class="number">60</span>,<span class="number">59</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="number">23</span>,<span class="number">110</span>,<span class="number">100</span>)</span><br><span class="line">);</span><br><span class="line">$i=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"$List[$i][1]"</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>运行时会显示 <code>Array to string conversion ……</code> 这样的问题。而一维数组没有发生问题。</p>
+<a id="more"></a>
+
 <p>多维数组，下标不是简单的数值的数组需要用<code>{}</code>起来。或者用temp，或者不使用引号都可以。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//修改后</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&#123;$List[$i][1]&#125;"</span>;</span><br><span class="line"><span class="keyword">echo</span> $List[$i][<span class="number">1</span>];</span><br><span class="line">$tmp=$List[$i][<span class="number">1</span>];</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"$tmp"</span>;</span><br></pre></td></tr></table></figure>
 
@@ -375,7 +377,7 @@
     
   
   <div class="comments">
-  <script src="https://utteranc.es/client.js" repo="NanFengX/NanFengx.github.io" issue-term="null" theme="github-light" crossorigin="anonymous" async></script>
+  <script src="null" repo="NanFengX/NanFengx.github.io" issue-term="null" theme="github-light" crossorigin="anonymous" async></script>
   </div>
   
   

