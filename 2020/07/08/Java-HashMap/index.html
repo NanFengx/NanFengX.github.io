@@ -64,7 +64,7 @@
 <meta property="og:description" content="阅读Java8的HashMap源码，写下了自己的一些笔记">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://nanfengx.top/2020/07/08/Java-HashMap/pic01.jpg">
-<meta property="og:updated_time" content="2020-07-09T02:11:17.710Z">
+<meta property="og:updated_time" content="2020-07-26T15:58:20.927Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java HashMap">
 <meta name="twitter:description" content="阅读Java8的HashMap源码，写下了自己的一些笔记">
@@ -262,7 +262,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-09 10:11:17" itemprop="dateModified" datetime="2020-07-09T10:11:17+08:00">2020-07-09</time>
+                <time title="Modified: 2020-07-26 23:58:20" itemprop="dateModified" datetime="2020-07-26T23:58:20+08:00">2020-07-26</time>
               </span>
             
           
@@ -386,6 +386,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">replace</span><span class="params">(K key, V oldValue, V newValue)</span> </span>&#123;</span><br><span class="line">    Node&lt;K,V&gt; e; V v;</span><br><span class="line">    <span class="keyword">if</span> ((e = getNode(hash(key), key)) != <span class="keyword">null</span> &amp;&amp;</span><br><span class="line">        ((v = e.value) == oldValue || (v != <span class="keyword">null</span> &amp;&amp; v.equals(oldValue)))) &#123;</span><br><span class="line">        e.value = newValue;</span><br><span class="line">        afterNodeAccess(e);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>有一个重载，会判断oldValue是否与e.value一致</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>HashMap继承了AbstractMap并实现了Map接口和Cloneable、Serializable接口</p>
 <p>参考资料</p>
 <ul>
 <li>JDK1.8源码</li>
@@ -425,6 +426,10 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2020/07/26/Java-ArrayList/" rel="prev" title="Java-ArrayList">
+                  Java-ArrayList <i class="fa fa-chevron-right"></i>
+                </a>
               
             </div>
           </div>
@@ -487,7 +492,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -631,7 +636,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关常量"><span class="nav-number">1.</span> <span class="nav-text">相关常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关变量"><span class="nav-number">2.</span> <span class="nav-text">相关变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四种构造函数"><span class="nav-number">3.</span> <span class="nav-text">四种构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关方法（选择了部分方法）"><span class="nav-number">4.</span> <span class="nav-text">相关方法（选择了部分方法）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hash"><span class="nav-number">4.1.</span> <span class="nav-text">hash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tableSizeFor"><span class="nav-number">4.2.</span> <span class="nav-text">tableSizeFor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#putMapEntries"><span class="nav-number">4.3.</span> <span class="nav-text">putMapEntries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#put"><span class="nav-number">4.4.</span> <span class="nav-text">put</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#resize"><span class="nav-number">4.5.</span> <span class="nav-text">resize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clear"><span class="nav-number">4.6.</span> <span class="nav-text">clear</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#containsKey"><span class="nav-number">4.7.</span> <span class="nav-text">containsKey</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#containsValue"><span class="nav-number">4.8.</span> <span class="nav-text">containsValue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get"><span class="nav-number">4.9.</span> <span class="nav-text">get</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#remove"><span class="nav-number">4.10.</span> <span class="nav-text">remove</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#replace"><span class="nav-number">4.11.</span> <span class="nav-text">replace</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关常量"><span class="nav-number">1.</span> <span class="nav-text">相关常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关变量"><span class="nav-number">2.</span> <span class="nav-text">相关变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四种构造函数"><span class="nav-number">3.</span> <span class="nav-text">四种构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关方法（选择了部分方法）"><span class="nav-number">4.</span> <span class="nav-text">相关方法（选择了部分方法）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hash"><span class="nav-number">4.1.</span> <span class="nav-text">hash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tableSizeFor"><span class="nav-number">4.2.</span> <span class="nav-text">tableSizeFor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#putMapEntries"><span class="nav-number">4.3.</span> <span class="nav-text">putMapEntries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#put"><span class="nav-number">4.4.</span> <span class="nav-text">put</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#resize"><span class="nav-number">4.5.</span> <span class="nav-text">resize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clear"><span class="nav-number">4.6.</span> <span class="nav-text">clear</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#containsKey"><span class="nav-number">4.7.</span> <span class="nav-text">containsKey</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#containsValue"><span class="nav-number">4.8.</span> <span class="nav-text">containsValue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get"><span class="nav-number">4.9.</span> <span class="nav-text">get</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#remove"><span class="nav-number">4.10.</span> <span class="nav-text">remove</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#replace"><span class="nav-number">4.11.</span> <span class="nav-text">replace</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充"><span class="nav-number">5.</span> <span class="nav-text">补充</span></a></li></ol></div>
             
 
           </div>
