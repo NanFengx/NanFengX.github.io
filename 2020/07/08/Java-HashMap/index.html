@@ -64,7 +64,7 @@
 <meta property="og:description" content="阅读Java8的HashMap源码，写下了自己的一些笔记">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://nanfengx.top/2020/07/08/Java-HashMap/pic01.jpg">
-<meta property="og:updated_time" content="2020-07-26T15:58:20.927Z">
+<meta property="og:updated_time" content="2020-08-07T06:30:24.056Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java HashMap">
 <meta name="twitter:description" content="阅读Java8的HashMap源码，写下了自己的一些笔记">
@@ -262,7 +262,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-26 23:58:20" itemprop="dateModified" datetime="2020-07-26T23:58:20+08:00">2020-07-26</time>
+                <time title="Modified: 2020-08-07 14:30:24" itemprop="dateModified" datetime="2020-08-07T14:30:24+08:00">2020-08-07</time>
               </span>
             
           
@@ -302,7 +302,6 @@
 <li><code>UNTREEIFY_THRESHOLD=6</code>，默认的将红黑树转为链表的深度，小于等于6时转换</li>
 <li><code>MIN_TREEIFY_CAPACITY=64</code>，默认的最小的将链表转为红黑树的数组大小</li>
 </ul>
-<hr>
 <h2 id="相关变量"><a href="#相关变量" class="headerlink" title="相关变量"></a>相关变量</h2><ul>
 <li><code>transient int size</code>当前Map的K-V对数目</li>
 <li><code>transient int modCount</code>用于记录当前Map被修改的次数<br>由于HashMap不是线程安全的，当HashMap在迭代开始时，会将modCount赋值给expectedModCount，迭代过程中，这两者如果不同，则说明此时该HashMap被修改了，会抛出异常ConcurrentModifiedException()</li>
@@ -311,7 +310,6 @@
 <li><code>transient Node&lt;K,V&gt;[] table</code>存放node的数组</li>
 <li><code>Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet</code></li>
 </ul>
-<hr>
 <h2 id="四种构造函数"><a href="#四种构造函数" class="headerlink" title="四种构造函数"></a>四种构造函数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">HashMap</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.loadFactor=DEFAULT_LOAD_FACTOR;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>无参构造函数，将负载因子设置为默认的负载因子，HashMap无参构造函数不会初始化table、threshold等值</p>
@@ -324,7 +322,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">HashMap</span><span class="params">(Map&lt;? extends K, ? extends V&gt; m)</span></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.loadFactor = DEFAULT_LOAD_FACTOR;</span><br><span class="line">    putMapRntries(m, <span class="keyword">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>将负载因子设置为默认值，并调用putMapEntries方法<br>将Map中的所有的K-V对添加到新的Map中，并将新的map中的threshold设置为传入的map的threshold</p>
-<hr>
 <h2 id="相关方法（选择了部分方法）"><a href="#相关方法（选择了部分方法）" class="headerlink" title="相关方法（选择了部分方法）"></a>相关方法（选择了部分方法）</h2><h3 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> h;</span><br><span class="line">    <span class="keyword">return</span> (key == <span class="keyword">null</span>)? <span class="number">0</span> : (h = key.hashCode())^(h &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>计算key的hash值，先判断是否为null，如果是则返回0，否则调用Object类的hashCode方法获得一个h值，将h与h逻辑右移16位之后的值异或，作为返回值</p>
@@ -427,8 +424,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2020/07/26/Java-ArrayList/" rel="prev" title="Java-ArrayList">
-                  Java-ArrayList <i class="fa fa-chevron-right"></i>
+                <a href="/2020/07/26/Java-ArrayList/" rel="prev" title="Java ArrayList">
+                  Java ArrayList <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -492,7 +489,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

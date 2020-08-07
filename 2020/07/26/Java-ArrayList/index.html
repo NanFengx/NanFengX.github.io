@@ -58,14 +58,14 @@
   <meta name="description" content="阅读Java8的ArrayList源码，写下了自己的一些笔记">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java-ArrayList">
+<meta property="og:title" content="Java ArrayList">
 <meta property="og:url" content="https://nanfengx.top/2020/07/26/Java-ArrayList/index.html">
 <meta property="og:site_name" content="NanFengX">
 <meta property="og:description" content="阅读Java8的ArrayList源码，写下了自己的一些笔记">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-07-27T08:56:49.544Z">
+<meta property="og:updated_time" content="2020-08-07T06:30:19.531Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java-ArrayList">
+<meta name="twitter:title" content="Java ArrayList">
 <meta name="twitter:description" content="阅读Java8的ArrayList源码，写下了自己的一些笔记">
   <link rel="canonical" href="https://nanfengx.top/2020/07/26/Java-ArrayList/">
 
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title>Java-ArrayList | NanFengX</title>
+  <title>Java ArrayList | NanFengX</title>
   
 
 
@@ -232,7 +232,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">Java-ArrayList
+          <h1 class="post-title" itemprop="name headline">Java ArrayList
 
             
           </h1>
@@ -260,7 +260,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-27 16:56:49" itemprop="dateModified" datetime="2020-07-27T16:56:49+08:00">2020-07-27</time>
+                <time title="Modified: 2020-08-07 14:30:19" itemprop="dateModified" datetime="2020-08-07T14:30:19+08:00">2020-08-07</time>
               </span>
             
           
@@ -294,18 +294,17 @@
 
 <p>ArrayList继承了AbstractList类并实现了List<e>、RandomAccess、Cloneable、java.io.Serializable接口</e></p>
 <h2 id="相关常量"><a href="#相关常量" class="headerlink" title="相关常量"></a>相关常量</h2><ul>
-<li><code>DEFAULT_CAPACITY</code>默认的容量初始值</li>
+<li><code>DEFAULT_CAPACITY=10</code>默认的容量初始值</li>
 <li><code>DEFAULTCAPACITY_EMPTY_ELEMENTDATA</code>默认的空Object数组</li>
 <li><code>EMPTY_ELEMENTDATA</code>空Object数组</li>
 <li><code>MAX_ARRAY_SIZE</code>最大数组容量，为Integer.MAX_VALUE - 8</li>
 </ul>
 <h2 id="相关变量"><a href="#相关变量" class="headerlink" title="相关变量"></a>相关变量</h2><ul>
-<li><code>size</code>ArrayList的容量</li>
-<li><code>elementData</code>存储数据的数组，无法被序列化</li>
+<li><code>private int</code>ArrayList的容量</li>
+<li><code>transient Object[]</code>存储数据的数组，无法被序列化</li>
 <li><code>transient int modCount</code>用于记录当前ArrayList被修改的次数</li>
-<li><h2 id="三种构造函数"><a href="#三种构造函数" class="headerlink" title="三种构造函数"></a>三种构造函数</h2></li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="三种构造函数"><a href="#三种构造函数" class="headerlink" title="三种构造函数"></a>三种构造函数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>将数组指向静态变量空数组DEFAULTCAPACITY_EMPTY_ELEMENTDATA，避免内存中存在大量的空数组，节省空间</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(<span class="keyword">int</span> initialCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (initialCapacity &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.elementData = <span class="keyword">new</span> Object[initialCapacity];</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (initialCapacity == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.elementData = EMPTY_ELEMENTDATA;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal Capacity: "</span>+</span><br><span class="line">                                            initialCapacity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -434,6 +433,10 @@
 
             <div class="post-nav-prev post-nav-item">
               
+                <a href="/2020/07/27/Java-ConcurrentHashMap/" rel="prev" title="Java ConcurrentHashMap">
+                  Java ConcurrentHashMap <i class="fa fa-chevron-right"></i>
+                </a>
+              
             </div>
           </div>
         
@@ -495,7 +498,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
