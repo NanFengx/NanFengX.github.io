@@ -55,19 +55,22 @@
   };
 </script>
 
-  <meta name="description" content="阅读Java8的Object源码，写下了自己的一些笔记">
-<meta name="keywords" content="Java">
+  <meta name="description" content="布隆过滤器，Bloom Filter，主要用于判断海量数据中是否存在某一个数据">
+<meta name="keywords" content="Java,Algorithm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java Object">
-<meta property="og:url" content="https://nanfengx.top/2020/08/07/Java-Object/index.html">
+<meta property="og:title" content="Bloom Filter">
+<meta property="og:url" content="https://nanfengx.top/2020/08/11/Bloom-Filter/index.html">
 <meta property="og:site_name" content="NanFengX">
-<meta property="og:description" content="阅读Java8的Object源码，写下了自己的一些笔记">
+<meta property="og:description" content="布隆过滤器，Bloom Filter，主要用于判断海量数据中是否存在某一个数据">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-08-10T15:36:58.061Z">
+<meta property="og:image" content="https://nanfengx.top/2020/08/11/Bloom-Filter/Bloom.jpg">
+<meta property="og:image" content="https://nanfengx.top/2020/08/11/Bloom-Filter/FPP.png">
+<meta property="og:updated_time" content="2020-08-11T15:13:32.710Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java Object">
-<meta name="twitter:description" content="阅读Java8的Object源码，写下了自己的一些笔记">
-  <link rel="canonical" href="https://nanfengx.top/2020/08/07/Java-Object/">
+<meta name="twitter:title" content="Bloom Filter">
+<meta name="twitter:description" content="布隆过滤器，Bloom Filter，主要用于判断海量数据中是否存在某一个数据">
+<meta name="twitter:image" content="https://nanfengx.top/2020/08/11/Bloom-Filter/Bloom.jpg">
+  <link rel="canonical" href="https://nanfengx.top/2020/08/11/Bloom-Filter/">
 
 
 <script id="page-configurations">
@@ -81,7 +84,7 @@
   };
 </script>
 
-  <title>Java Object | NanFengX</title>
+  <title>Bloom Filter | NanFengX</title>
   
 
 
@@ -218,7 +221,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://nanfengx.top/2020/08/07/Java-Object/">
+    <link itemprop="mainEntityOfPage" href="https://nanfengx.top/2020/08/11/Bloom-Filter/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="NanFengX">
@@ -232,7 +235,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">Java Object
+          <h1 class="post-title" itemprop="name headline">Bloom Filter
 
             
           </h1>
@@ -249,19 +252,11 @@
                 
               
 
-              <time title="Created: 2020-08-07 14:30:45" itemprop="dateCreated datePublished" datetime="2020-08-07T14:30:45+08:00">2020-08-07</time>
+              <time title="Created: 2020-08-11 21:49:44 / Modified: 23:13:32" itemprop="dateCreated datePublished" datetime="2020-08-11T21:49:44+08:00">2020-08-11</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-10 23:36:58" itemprop="dateModified" datetime="2020-08-10T23:36:58+08:00">2020-08-10</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -270,7 +265,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
 
                 
                 
@@ -289,75 +284,47 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>阅读Java8的Object源码，写下了自己的一些笔记</p>
+        <p>布隆过滤器，Bloom Filter，主要用于判断海量数据中是否存在某一个数据</p>
 <a id="more"></a>
 
-<p>Object类是所有类的父类，也是Java虚拟机加载的第一个类</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>Object类中的方法有</p>
-<ul>
-<li>registerNatives</li>
-<li>getClass</li>
-<li>hashCode</li>
-<li>equals</li>
-<li>clone</li>
-<li>toString</li>
-<li>notify</li>
-<li>notifyAll</li>
-<li>wait</li>
-<li>finalize</li>
-</ul>
-<h3 id="registerNatives"><a href="#registerNatives" class="headerlink" title="registerNatives"></a>registerNatives</h3><p>调用该方法注册本地方法，调用C函数实现Java方法</p>
-<h3 id="getClass"><a href="#getClass" class="headerlink" title="getClass"></a>getClass</h3><p>是一个本地方法，返回类名</p>
-<p>如果是匿名内部类的话,不输出任何类名</p>
-<h2 id="hashCode"><a href="#hashCode" class="headerlink" title="hashCode"></a>hashCode</h2><p>多次调用hashCode方法要返回一致的hashCode</p>
-<p>设计一个HashCode算法</p>
-<ul>
-<li>把某个非 0 的常数值，比如 17，保存在一个名为 result 的 int 类型的变量中。</li>
-<li>对于对象中的每个域，做如下操作：<ul>
-<li>为该域计算 int 类型的哈希值 c ：<ul>
-<li>如果该域是 boolean 类型，则计算 (f?1:0)</li>
-<li>如果该域是 byte、char、short 或者 int 类型，则计算 (int)f</li>
-<li>如果该域是 long 类型，则计算 (int)(f^(f&gt;&gt;&gt;32))</li>
-<li>如果该域是 float 类型，则计算 Float.floatToIntBits(f)</li>
-<li>如果该域是 double 类型，则计算 Double.doubleToLongBits(f)，然后重复第三个步骤。</li>
-<li>如果该域是一个对象引用，并且该类的 equals 方法通过递归调用 equals 方法来比较这个域，同样为这个域递归的调用 hashCode，如果这个域为 null，则返回0。</li>
-<li>如果该域是数组，则要把每一个元素当作单独的域来处理，递归的运用上述规则，如果数组域中的每个元素都很重要，那么可以使用 Arrays.hashCode 方法。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>按照公式 result = 31 * result + c，把上面步骤 2.1 中计算得到的散列码 c 合并到 result 中。</li>
-</ul>
-<p>返回 result</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> h = hash;</span><br><span class="line">    <span class="keyword">if</span> (h == <span class="number">0</span> &amp;&amp; value.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">char</span> val[] = value;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; value.length; i++) &#123;</span><br><span class="line">            h = <span class="number">31</span> * h + val[i];</span><br><span class="line">        &#125;</span><br><span class="line">        hash = h;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>布隆过滤器特别适用于海量数据中是否存在某一个数据，但有一定的误差，需要根据实际情况调整</p>
+<p>布隆过滤器保证一个数据一定不存在，但不能保证一个数据是否存在</p>
+<p><img src="/2020/08/11/Bloom-Filter/Bloom.jpg" alt></p>
+<blockquote>
+<p>你永远可以相信布隆</p>
+</blockquote>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>布隆过滤器使用多个hash函数，对于一个数据，将它映射到两个不同的地址上，并将该位置为1。多个数据映射可能会到同一个位上，这就造成了误差。</p>
+<p>我们举一个例子，比如这是一个长为8的数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">index: 0 1 2 3 4 5 6 7 </span><br><span class="line">  val: 0 0 0 0 0 0 0 0</span><br></pre></td></tr></table></figure>
 
-<p>String类重写的hashCode如上</p>
-<p>为什么使用31?</p>
-<ul>
-<li>31=1&lt;&lt;5-1,容易计算</li>
-<li>31是质数</li>
-</ul>
-<h2 id="equals"><a href="#equals" class="headerlink" title="equals"></a>equals</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假如插入数字3和6，并且最后根据两个hash函数分别映射到了0，1和0，5，那么这个数组就变成了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">index: 0 1 2 3 4 5 6 7 </span><br><span class="line">  val: 1 1 0 0 0 1 0 0</span><br></pre></td></tr></table></figure>
 
-<p>默认是比较对象的引用</p>
-<p>重写equals要重写hashCode</p>
-<p>契约:</p>
+<p>这时候，我们查询3是否在这个集合中，根据hash函数，可以计算出我们应该查找0和1这两个槽，发现他们都置为1，因此3存在于这个集合之中</p>
+<p>但假如我们查询一个数字7是否在集合之中，假设7最后映射到了1，5而且数组中1，5都为1，那么尽管7不在数组中，依旧会返回true（即7在数组中）</p>
+<p>除此之外，可能会存在多个数字某个hash函数映射到同一位上的情况，比如上文你无法判断数字7是否在这个数组之中</p>
+<p>相比较而言，hashmap对所有冲突的情况，使用了红黑树和链表来解决冲突，保存信息，而布隆过滤器却没有使用</p>
+<p>如果我们使用布隆过滤器的话，比如判断URL是否存在，就可以轻松保存在内存中了</p>
+<p>当然，关于add的数目和size之间，也要需要慎重考虑，避免误差过大，影响正常使用</p>
+<h2 id="误差分析"><a href="#误差分析" class="headerlink" title="误差分析"></a>误差分析</h2><p>布隆过滤器有一个可预测的误判率（FPP）：</p>
+<p><img src="/2020/08/11/Bloom-Filter/FPP.png" alt></p>
 <ul>
-<li>equals相同hashCode也相同</li>
-<li>hashCode相同equals可以不同</li>
+<li>n是已经添加的元素数量</li>
+<li>k是hash的次数（下方代码为2）</li>
+<li>m是布隆过滤器的长度（下方代码为size*32）</li>
 </ul>
-<h3 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h3><p>先判断是否实现了Cloneable接口,再实现cloone方法<br>否则会抛出CloneNotSupportedException</p>
-<p>clone()默认是浅拷贝</p>
-<h3 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString"></a>toString</h3><p>默认返回类名+@+内存地址经过hash算法得出的16进制数</p>
-<p>可以重写</p>
-<h3 id="notify"><a href="#notify" class="headerlink" title="notify"></a>notify</h3><p>多线程中,用于唤醒一个线程</p>
-<h3 id="notifyAll"><a href="#notifyAll" class="headerlink" title="notifyAll"></a>notifyAll</h3><p>多线程中,用于唤醒所有线程</p>
-<h3 id="wait"><a href="#wait" class="headerlink" title="wait"></a>wait</h3><p>多个重载,等待一段时间,如果为0,永久等待</p>
-<h3 id="finfnalize"><a href="#finfnalize" class="headerlink" title="finfnalize"></a>finfnalize</h3><p>几乎不用,在GC时会调用,且只调用一次,但不保证一定执行,可以在方法中与GC Roots相连避免被回收</p>
-<p>参考资料</p>
+<p>极端情况下，当布隆过滤器所有的位全都置1，则每次返回都是true</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>使用Java语言编写</p>
+<p>为了便于位运算，仿照hashmap使用了tableSizeFor函数，返回大于等于cap的最小2的n次方的值</p>
+<p>使用了bitmap实现布隆过滤器，其实也可以使用boolean实现</p>
+<p>代码见下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bloom_Filter</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAXIMUM_CAPACITY = <span class="number">32768</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span>[] arr;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Bloom_Filter</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">		size = tableSizeFor(size);</span><br><span class="line">		arr = <span class="keyword">new</span> <span class="keyword">int</span>[size];</span><br><span class="line">		<span class="keyword">this</span>.size = size;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">tableSizeFor</span><span class="params">(<span class="keyword">int</span> cap)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> n = cap - <span class="number">1</span>;</span><br><span class="line">		n |= n &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">		n |= n &gt;&gt;&gt; <span class="number">2</span>;</span><br><span class="line">		n |= n &gt;&gt;&gt; <span class="number">4</span>;</span><br><span class="line">		n |= n &gt;&gt;&gt; <span class="number">8</span>;</span><br><span class="line">		n |= n &gt;&gt;&gt; <span class="number">16</span>;</span><br><span class="line">		<span class="keyword">return</span> (n &lt; <span class="number">0</span>) ? <span class="number">1</span> : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Integer val)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> index;</span><br><span class="line">		<span class="keyword">int</span> bit;</span><br><span class="line"></span><br><span class="line">		index = hash1(val) &amp; (size * <span class="number">32</span> - <span class="number">1</span>);</span><br><span class="line">		bit = index &amp; ((<span class="number">1</span> &lt;&lt; <span class="number">5</span>) - <span class="number">1</span>);</span><br><span class="line">		index = index &gt;&gt; <span class="number">5</span>;</span><br><span class="line">		arr[index] |= (<span class="number">1</span> &lt;&lt; bit);</span><br><span class="line"></span><br><span class="line">		index = hash2(val) &amp; (size * <span class="number">32</span> - <span class="number">1</span>);</span><br><span class="line">		bit = index &amp; ((<span class="number">1</span> &lt;&lt; <span class="number">5</span>) - <span class="number">1</span>);</span><br><span class="line">		index = index &gt;&gt; <span class="number">5</span>;</span><br><span class="line">		arr[index] |= (<span class="number">1</span> &lt;&lt; bit);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hash1</span><span class="params">(Integer val)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> hash = val * <span class="number">2017</span>;<span class="comment">//找了一个质数，下同</span></span><br><span class="line">		<span class="keyword">return</span> hash;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hash2</span><span class="params">(Integer val)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> hash = val * <span class="number">2027</span>;</span><br><span class="line">		<span class="keyword">return</span> hash;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Integer val)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> index;</span><br><span class="line">		<span class="keyword">int</span> bit;</span><br><span class="line"></span><br><span class="line">		index = hash1(val) &amp; (size * <span class="number">32</span> - <span class="number">1</span>);</span><br><span class="line">		bit = index &amp; ((<span class="number">1</span> &lt;&lt; <span class="number">5</span>) - <span class="number">1</span>);</span><br><span class="line">		index = index &gt;&gt; <span class="number">5</span>;</span><br><span class="line">		<span class="keyword">boolean</span> hash1 = ((arr[index] &amp; (<span class="number">1</span> &lt;&lt; bit)) != <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">		index = hash2(val) &amp; (size * <span class="number">32</span> - <span class="number">1</span>);</span><br><span class="line">		bit = index &amp; ((<span class="number">1</span> &lt;&lt; <span class="number">5</span>) - <span class="number">1</span>);</span><br><span class="line">		index = index &gt;&gt; <span class="number">5</span>;</span><br><span class="line">		<span class="keyword">boolean</span> hash2 = ((arr[index] &amp; (<span class="number">1</span> &lt;&lt; bit)) != <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> hash1 &amp; hash2;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>相关资料</p>
 <ul>
-<li><a href="https://juejin.im/post/6844903683918921741" target="_blank" rel="noopener">解析hashCode</a></li>
-<li>JDK1.8源码</li>
+<li><a href="https://wizardforcel.gitbooks.io/the-art-of-programming-by-july/content/a.1.html" target="_blank" rel="noopener">40亿个数中快速查找</a></li>
+<li><a href="https://juejin.im/post/6844904007790673933" target="_blank" rel="noopener">5 分钟搞懂布隆过滤器，亿级数据过滤算法你值得拥有！</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8" target="_blank" rel="noopener">布隆过滤器</a></li>
 </ul>
 
     </div>
@@ -376,6 +343,8 @@
             
               <a href="/tags/Java/" rel="tag"># Java</a>
             
+              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+            
           </div>
         
 
@@ -384,8 +353,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2020/07/27/Java-ConcurrentHashMap/" rel="next" title="Java ConcurrentHashMap">
-                  <i class="fa fa-chevron-left"></i> Java ConcurrentHashMap
+                <a href="/2020/08/07/Java-Object/" rel="next" title="Java Object">
+                  <i class="fa fa-chevron-left"></i> Java Object
                 </a>
               
             </div>
@@ -393,10 +362,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2020/08/11/Bloom-Filter/" rel="prev" title="Bloom Filter">
-                  Bloom Filter <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -607,7 +572,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">1.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#registerNatives"><span class="nav-number">1.1.</span> <span class="nav-text">registerNatives</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getClass"><span class="nav-number">1.2.</span> <span class="nav-text">getClass</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hashCode"><span class="nav-number">2.</span> <span class="nav-text">hashCode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#equals"><span class="nav-number">3.</span> <span class="nav-text">equals</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#clone"><span class="nav-number">3.1.</span> <span class="nav-text">clone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#toString-NaN"><span class="nav-number">3.2.</span> <span class="nav-text">toString</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#notify"><span class="nav-number">3.3.</span> <span class="nav-text">notify</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#notifyAll"><span class="nav-number">3.4.</span> <span class="nav-text">notifyAll</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wait"><span class="nav-number">3.5.</span> <span class="nav-text">wait</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#finfnalize"><span class="nav-number">3.6.</span> <span class="nav-text">finfnalize</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#误差分析"><span class="nav-number">2.</span> <span class="nav-text">误差分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
             
 
           </div>

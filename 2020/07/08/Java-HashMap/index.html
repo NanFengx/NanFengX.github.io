@@ -64,7 +64,7 @@
 <meta property="og:description" content="阅读Java8的HashMap源码，写下了自己的一些笔记">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://nanfengx.top/2020/07/08/Java-HashMap/pic01.jpg">
-<meta property="og:updated_time" content="2020-08-07T06:30:24.056Z">
+<meta property="og:updated_time" content="2020-08-07T08:18:39.647Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java HashMap">
 <meta name="twitter:description" content="阅读Java8的HashMap源码，写下了自己的一些笔记">
@@ -262,7 +262,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-07 14:30:24" itemprop="dateModified" datetime="2020-08-07T14:30:24+08:00">2020-08-07</time>
+                <time title="Modified: 2020-08-07 16:18:39" itemprop="dateModified" datetime="2020-08-07T16:18:39+08:00">2020-08-07</time>
               </span>
             
           
@@ -352,6 +352,10 @@
 <li>原来的位置</li>
 <li>原来的位置+原来的数组长度</li>
 </ol>
+<p>为什么会设置树化的阈值为8?<br>根据java8中的注释</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">0:    0.60653066</span><br><span class="line">1:    0.30326533</span><br><span class="line">2:    0.07581633</span><br><span class="line">3:    0.01263606</span><br><span class="line">4:    0.00157952</span><br><span class="line">5:    0.00015795</span><br><span class="line">6:    0.00001316</span><br><span class="line">7:    0.00000094</span><br><span class="line">8:    0.00000006</span><br><span class="line">more: less than 1 in ten million</span><br></pre></td></tr></table></figure>
+
+<p>当hash的结果均匀的时候，达到8以上的可能性极小<br>还有一个原因，红黑树的高度在3的时候，最多可以容纳7个节点</p>
 <p>当节点为普通节点时，直接放入新的位置<br>当节点为红黑树节点时，调用红黑树的拆分方法，放到对应的位置<br>当节点为链表时，将链表分为两部分放到新的位置和原来的位置</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    next = e.next;</span><br><span class="line">    <span class="keyword">if</span> ((e.hash &amp; oldCap) == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (loTail == <span class="keyword">null</span>)</span><br><span class="line">            loHead = e;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            loTail.next = e;</span><br><span class="line">        loTail = e;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (hiTail == <span class="keyword">null</span>)</span><br><span class="line">            hiHead = e;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            hiTail.next = e;</span><br><span class="line">        hiTail = e;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">while</span> ((e = next) != <span class="keyword">null</span>);</span><br><span class="line"><span class="keyword">if</span> (loTail != <span class="keyword">null</span>) &#123;</span><br><span class="line">    loTail.next = <span class="keyword">null</span>;</span><br><span class="line">    newTab[j] = loHead;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (hiTail != <span class="keyword">null</span>) &#123;</span><br><span class="line">    hiTail.next = <span class="keyword">null</span>;</span><br><span class="line">    newTab[j + oldCap] = hiHead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -489,7 +493,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -520,7 +524,9 @@
         
           
         
-        <span class="site-state-item-count">8</span>
+          
+        
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -553,7 +559,9 @@
         
           
         
-        <span class="site-state-item-count">11</span>
+          
+        
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span>
         
       </div>
