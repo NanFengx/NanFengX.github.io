@@ -27,15 +27,15 @@
 <meta property="og:site_name" content="NanFengX">
 <meta property="og:description" content="布隆过滤器，Bloom Filter，主要用于判断海量数据中是否存在某一个数据">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://nanfengx.top/Bloom-Filter/Bloom.jpg">
-<meta property="og:image" content="https://nanfengx.top/Bloom-Filter/FPP.png">
+<meta property="og:image" content="https://nanfengx.top/2020/08/11/Bloom-Filter/Bloom.jpg">
+<meta property="og:image" content="https://nanfengx.top/2020/08/11/Bloom-Filter/FPP.png">
 <meta property="article:published_time" content="2020-08-11T13:49:44.000Z">
-<meta property="article:modified_time" content="2020-08-11T15:13:32.710Z">
+<meta property="article:modified_time" content="2021-12-30T15:11:44.501Z">
 <meta property="article:author" content="NanFengX">
 <meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://nanfengx.top/Bloom-Filter/Bloom.jpg">
+<meta name="twitter:image" content="https://nanfengx.top/2020/08/11/Bloom-Filter/Bloom.jpg">
 
 <link rel="canonical" href="https://nanfengx.top/2020/08/11/Bloom-Filter/">
 
@@ -188,10 +188,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-08-11 21:49:44 / Modified: 23:13:32" itemprop="dateCreated datePublished" datetime="2020-08-11T21:49:44+08:00">2020-08-11</time>
+              <time title="Created: 2020-08-11 21:49:44" itemprop="dateCreated datePublished" datetime="2020-08-11T21:49:44+08:00">2020-08-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-30 23:11:44" itemprop="dateModified" datetime="2021-12-30T23:11:44+08:00">2021-12-30</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -218,7 +224,7 @@
 
 <p>布隆过滤器特别适用于海量数据中是否存在某一个数据，但有一定的误差，需要根据实际情况调整</p>
 <p>布隆过滤器保证一个数据一定不存在，但不能保证一个数据是否存在</p>
-<p><img src="/./Bloom-Filter/Bloom.jpg"></p>
+<p><img src="/2020/08/11/Bloom-Filter/Bloom.jpg"></p>
 <blockquote>
 <p>你永远可以相信布隆</p>
 </blockquote>
@@ -236,7 +242,7 @@
 <p>如果我们使用布隆过滤器的话，比如判断URL是否存在，就可以轻松保存在内存中了</p>
 <p>当然，关于add的数目和size之间，也要需要慎重考虑，避免误差过大，影响正常使用</p>
 <h2 id="误差分析"><a href="#误差分析" class="headerlink" title="误差分析"></a>误差分析</h2><p>布隆过滤器有一个可预测的误判率（FPP）：</p>
-<p><img src="/./Bloom-Filter/FPP.png"></p>
+<p><img src="/2020/08/11/Bloom-Filter/FPP.png"></p>
 <ul>
 <li>n是已经添加的元素数量</li>
 <li>k是hash的次数（下方代码为2）</li>

